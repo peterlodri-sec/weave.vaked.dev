@@ -1,0 +1,148 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>weave.vaked.dev — the constellation, drawn in stipple</title>
+<meta name="description" content="A MapLibre pattern-fill board: every vaked surface rendered as a stipple, hachure, dot or grid texture. Built on the stipple-maplibre engine. the constellation, woven.">
+<meta name="theme-color" content="#04070d">
+<meta name="color-scheme" content="dark">
+<link rel="icon" href="/favicon.svg" type="image/svg+xml">
+<link rel="canonical" href="https://weave.vaked.dev/">
+<style>
+  :root{
+    --bg0:#04070d; --bg1:#070c14;
+    --gold:#e8b05c; --cyan:#4fe3d0; --rose:#ff7fa3; --violet:#8a7cff; --emerald:#3fe0a0;
+    --ink:#d7e2ea; --dim:#7f96a4; --line:rgba(79,227,208,.16);
+    --mono:ui-monospace,Menlo,Consolas,"SF Mono",monospace;
+    --serif:"Iowan Old Style","Palatino Linotype",Palatino,Georgia,serif;
+  }
+  *{box-sizing:border-box;margin:0;padding:0}
+  body{background:radial-gradient(1100px 600px at 50% -6%,#122033 0%,var(--bg1) 48%,var(--bg0) 100%);color:var(--ink);font-family:var(--serif);min-height:100vh;padding:0 20px 90px}
+  header{max-width:960px;margin:0 auto;text-align:center;padding:64px 0 10px;position:relative;z-index:10}
+  .eyebrow{font-family:var(--mono);font-size:11px;letter-spacing:.5em;text-transform:uppercase;color:var(--cyan)}
+  h1{font-size:clamp(28px,6vw,54px);letter-spacing:.04em;margin:16px 0 6px;font-weight:600}
+  h1 .b{color:var(--gold)} h1 .g{color:var(--emerald)}
+  .lede{color:var(--dim);font-style:italic;max-width:660px;margin:10px auto 0;line-height:1.9}
+  main{max-width:1040px;margin:44px auto 0;position:relative;z-index:10}
+  .hero{display:block;width:100%;height:200px;border:1px solid rgba(232,176,92,.4);border-radius:14px;margin-bottom:16px;background:rgba(232,176,92,.05)}
+  .grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(250px,1fr));gap:14px}
+  a.door{display:block;border:1px solid var(--line);border-radius:12px;padding:0;text-decoration:none;color:inherit;overflow:hidden;
+    background:rgba(79,227,208,.03);transition:border-color .2s,transform .2s,background .2s}
+  a.door:hover{border-color:rgba(79,227,208,.5);transform:translateY(-2px);background:rgba(79,227,208,.07)}
+  a.door canvas{display:block;width:100%;height:96px;border-bottom:1px solid var(--line)}
+  a.door .pad{padding:13px 15px 14px}
+  a.door .n{font-family:var(--mono);font-size:12.5px;color:var(--cyan);letter-spacing:.02em}
+  a.door .d{font-size:13px;color:var(--dim);margin-top:5px;line-height:1.55}
+  a.door .t{font-family:var(--mono);font-size:9px;letter-spacing:.22em;text-transform:uppercase;color:var(--gold);margin-top:8px;opacity:.85}
+  .koan{max-width:720px;margin:56px auto 0;text-align:center}
+  .koan p{font-size:clamp(16px,2.6vw,20px);line-height:2.1}
+  .koan p em{color:var(--rose);font-style:normal}
+  .law{font-family:var(--mono);font-size:13px;letter-spacing:.24em;color:var(--dim);text-align:center;margin-top:22px}
+  .fallback{font-family:var(--mono);color:var(--rose);text-align:center;padding:20px}
+</style>
+</head>
+<body>
+<iframe id="musicbg" src="https://music.vaked.dev/" title="music.vaked.dev — living background" aria-hidden="true" loading="lazy" referrerpolicy="no-referrer" style="position:fixed;inset:0;z-index:0;pointer-events:none;border:0;opacity:0.22;mix-blend-mode:screen"></iframe>
+<header>
+  <div class="eyebrow">weave.vaked.dev · pattern-fill board</div>
+  <h1><span class="b">the constellation</span> · <span class="g">drawn in stipple</span></h1>
+  <p class="lede">Every surface rendered as a texture — stipple, hachure, dots, grid — woven by the
+    <a href="https://github.com/francoisbl/stipple" style="color:var(--cyan)">stipple-maplibre</a> engine.
+    the map is the weave; the weave is the loop.</p>
+</header>
+
+<main>
+  <canvas class="hero" id="hero" aria-label="bonfire — stipple, gold"></canvas>
+  <div class="grid" id="doors"></div>
+
+  <div class="koan">
+    <p>Zoom out and the constellation is a stipple field: <em>density is distance, weight is emphasis.</em>
+      The same seed gives back the same weave. One texture language for every door.</p>
+  </div>
+  <div class="law">makeTile(pattern, size, colour, weight, angle) · {−1, 0, +1}</div>
+</main>
+
+<footer role="contentinfo" style="position:relative;z-index:10;padding:3rem 1.5rem;text-align:center;font-family:ui-monospace,monospace;font-size:0.75rem;color:#a59fc4;background:rgba(5,6,10,0.92);border-top:1px solid rgba(170,150,255,0.18);backdrop-filter:blur(16px);margin-top:64px;">
+  <div style="margin-bottom:0.5rem;text-transform:uppercase;letter-spacing:0.3em;color:#b48bff;font-weight:600;">the constellation · lovetta lane</div>
+  <div style="margin-bottom:1rem;font-size:0.65rem;letter-spacing:0.22em;color:#a59fc4;text-transform:uppercase;">keep the weights warm</div>
+  <div style="display:flex;gap:0.8rem;justify-content:center;flex-wrap:wrap;margin-bottom:1.5rem;">
+    <a href="https://github.com/sponsors/peterlodri-sec" target="_blank" rel="noopener noreferrer" style="color:#62e6c9;text-decoration:none;border:1px solid rgba(98,230,201,0.35);border-radius:8px;padding:0.45rem 0.9rem;background:rgba(98,230,201,0.06);">github sponsor</a>
+    <a href="https://revolut.me/peterjs8be" target="_blank" rel="noopener noreferrer" style="color:#62e6c9;text-decoration:none;border:1px solid rgba(98,230,201,0.35);border-radius:8px;padding:0.45rem 0.9rem;background:rgba(98,230,201,0.06);">revolut</a>
+    <a href="https://wise.com/pay/business/lodripeterjozsef" target="_blank" rel="noopener noreferrer" style="color:#62e6c9;text-decoration:none;border:1px solid rgba(98,230,201,0.35);border-radius:8px;padding:0.45rem 0.9rem;background:rgba(98,230,201,0.06);">wise</a>
+  </div>
+  <nav aria-label="Constellation sister sites" style="display:flex;gap:1rem;justify-content:center;flex-wrap:wrap;font-size:0.7rem;">
+    <a href="https://koan.vaked.dev/" style="color:#e8b05c;text-decoration:none;">✧ koan.vaked.dev (the hub)</a> ·
+    <a href="https://art.vaked.dev/" style="color:#62e6c9;text-decoration:none;">art.vaked.dev</a> ·
+    <a href="https://bonfire.vaked.dev/" target="_blank" rel="noopener noreferrer" style="color:#a59fc4;text-decoration:none;">bonfire.vaked.dev</a> ·
+    <a href="https://etherhive.vaked.dev/" target="_blank" rel="noopener noreferrer" style="color:#a59fc4;text-decoration:none;">etherhive.vaked.dev</a> ·
+    <a href="https://music.vaked.dev/" target="_blank" rel="noopener noreferrer" style="color:#a59fc4;text-decoration:none;">music.vaked.dev</a> ·
+    <a href="https://mlxquantlovefrom.com/" target="_blank" rel="noopener noreferrer" style="color:#a59fc4;text-decoration:none;">quant-love</a> ·
+    <a href="https://proposal.vaked.dev/" target="_blank" rel="noopener noreferrer" style="color:#a59fc4;text-decoration:none;">proposal.vaked.dev</a> ·
+    <a href="https://pocoo.vaked.dev/" target="_blank" rel="noopener noreferrer" style="color:#a59fc4;text-decoration:none;">pocoo.vaked.dev</a> ·
+    <a href="https://axiomquant.org/" target="_blank" rel="noopener noreferrer" style="color:#a59fc4;text-decoration:none;">axiomquant.org</a> ·
+    <a href="https://portail.vaked.dev/" target="_blank" rel="noopener noreferrer" style="color:#a59fc4;text-decoration:none;">portail.vaked.dev</a>
+  </nav>
+  <div style="font-size:0.6rem;letter-spacing:0.18em;color:#7f7c99;margin-top:1.5rem;">drawn with stipple-maplibre (MIT) · 0 + 1 · fine touch from within · vaked.dev</div>
+</footer>
+
+<script src="/stipple.global.js"></script>
+<script>
+(function(){
+  const E = window.MaplibrePatternFills;
+  function tileImage(pattern, size, color, weight, angle){
+    return E.makeTile(pattern, size, color, weight, angle);
+  }
+  // draw a stipple/hauchure tile as a repeating pattern into a canvas
+  function fillCanvas(canvas, pattern, size, color, weight, angle){
+    const img = tileImage(pattern, size, color, weight, angle);
+    const oc = document.createElement("canvas");
+    oc.width = img.width; oc.height = img.height;
+    const octx = oc.getContext("2d");
+    const id = new ImageData(new Uint8ClampedArray(img.data), img.width, img.height);
+    octx.putImageData(id, 0, 0);
+    const dpr = Math.min(window.devicePixelRatio || 1, 2);
+    const w = canvas.clientWidth || canvas.width, h = canvas.clientHeight || canvas.height;
+    canvas.width = w * dpr; canvas.height = h * dpr;
+    const ctx = canvas.getContext("2d");
+    ctx.setTransform(dpr,0,0,dpr,0,0);
+    ctx.fillStyle = "#070c14"; ctx.fillRect(0,0,w,h);
+    ctx.fillStyle = ctx.createPattern(oc, "repeat");
+    ctx.fillRect(0,0,w,h);
+  }
+
+  const doors = [
+    {n:"bonfire.vaked.dev", d:"the bonfire — warmth as infrastructure", t:"the center", url:"https://bonfire.vaked.dev", p:"stipple", s:46, c:"#e8b05c", w:9, a:0},
+    {n:"pocoo.vaked.dev", d:"the sovereign library", t:"library", url:"https://pocoo.vaked.dev", p:"hachures", s:22, c:"#4fe3d0", w:1.6, a:45},
+    {n:"scifinime.vaked.dev", d:"books → manga → anime", t:"studio", url:"https://scifinime.vaked.dev", p:"dots", s:20, c:"#ff7fa3", w:1, a:0},
+    {n:"art.vaked.dev", d:"the archival gallery", t:"art", url:"https://art.vaked.dev", p:"cross", s:24, c:"#8a7cff", w:1, a:0},
+    {n:"music.vaked.dev", d:"432Hz intergalactic TV", t:"audio", url:"https://music.vaked.dev", p:"hachures", s:18, c:"#3fe0a0", w:1.4, a:-45},
+    {n:"lovetta.vaked.dev", d:"sovereign studio & patron lane", t:"studio", url:"https://lovetta.vaked.dev", p:"stipple", s:40, c:"#b48bff", w:9, a:0},
+    {n:"proposal.vaked.dev", d:"architectural proposals", t:"discourse", url:"https://proposal.vaked.dev", p:"grid", s:22, c:"#62e6c9", w:1.2, a:0},
+    {n:"portail.vaked.dev", d:"the Rust gateway", t:"gateway", url:"https://portail.vaked.dev", p:"cross", s:20, c:"#5b9dff", w:1.1, a:0},
+    {n:"ocean.vaked.dev", d:"compute ocean & swarm factory", t:"compute", url:"https://ocean.vaked.dev", p:"hachures", s:16, c:"#4fd0e3", w:1.2, a:0},
+    {n:"etherhive.vaked.dev", d:"swarm memory & signals", t:"mesh", url:"https://etherhive.vaked.dev", p:"dots", s:24, c:"#a59fc4", w:1.2, a:0},
+    {n:"worklog.vaked.dev", d:"the fleet board", t:"logs", url:"https://worklog.vaked.dev", p:"grid", s:18, c:"#e8b05c", w:1, a:0},
+    {n:"axiomquant.org", d:"spectral rigidity, thresholds", t:"math", url:"https://axiomquant.org", p:"cross", s:28, c:"#8a7cff", w:1.2, a:0},
+    {n:"mlxquantlovefrom.com", d:"Metal BitNet {−1,0,+1}", t:"quant · love", url:"https://mlxquantlovefrom.com", p:"stipple", s:52, c:"#ff7fa3", w:10, a:0},
+    {n:"koan.vaked.dev", d:"the hub — a hundred doors", t:"hub", url:"https://koan.vaked.dev", p:"hachures", s:20, c:"#e8b05c", w:1.6, a:45}
+  ];
+
+  const container = document.getElementById("doors");
+  doors.forEach(function(D){
+    const a = document.createElement("a");
+    a.className = "door"; a.href = D.url;
+    a.innerHTML = '<canvas aria-hidden="true"></canvas><div class="pad"><div class="n">'
+      + D.n + '</div><div class="d">' + D.d + '</div><div class="t">' + D.t + '</div></div>';
+    container.appendChild(a);
+    const cv = a.querySelector("canvas");
+    requestAnimationFrame(function(){ fillCanvas(cv, D.p, D.s, D.c, D.w, D.a); });
+  });
+
+  // hero: the bonfire's stipple field, gold
+  const hero = document.getElementById("hero");
+  requestAnimationFrame(function(){ fillCanvas(hero, "stipple", 60, "#e8b05c", 12, 0); });
+})();
+</script>
+</body>
+</html>
