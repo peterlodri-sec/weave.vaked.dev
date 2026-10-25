@@ -20,7 +20,11 @@ MaplibrePatternFills.makeTile(pattern, size, color, weight, angle)
 ```
 
 The tile is turned into a repeating canvas pattern and filled into each card,
-so density reads as distance and weight as emphasis. Same seed → same weave.
+so density reads as distance and weight as emphasis. Same seed → same weave
+across all **22 constellation doors** (`bonfire`, `pocoo`, `scifinime`, `art`,
+`music`, `lovetta`, `proposal`, `portail`, `ocean`, `etherhive`, `worklog`,
+`axiomquant.org`, `mlxquantlovefrom.com`, `koan`, `ultra`, `disco`, `design`,
+`zeno`, `wupz`, `esp32`, `8b`, `inu`).
 
 ---
 
